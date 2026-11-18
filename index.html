@@ -340,7 +340,9 @@ async function simpanKehadiran() {
   let pautanGambar = '';
 
   if (capturedImageData) {
-    const namaFail = `${currentPelajar.id}_${day}${month}${year}.jpg`;
+    const jam   = String(now.getHours()).padStart(2, '0');
+    const minit = String(now.getMinutes()).padStart(2, '0');
+    const namaFail = `${year}${month}${day}_${jam}${minit}_${currentPelajar.id}.jpg`;
     try {
       const uploadResponse = await fetch(`${SCRIPT_URL}?action=uploadImage&fileName=${namaFail}&mimeType=image/jpeg`, {
         method: 'POST', body: capturedImageData
